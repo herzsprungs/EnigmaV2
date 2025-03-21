@@ -38,7 +38,8 @@ namespace TRYINGSMT
         Dictionary<char, char> _plugboard = new Dictionary<char, char>(); // Plugboard dictionary
         private bool _plugboardSet = false; // Flag to indicate if plugboard is set
 
-        // Constructor
+       
+
         public MainWindow()
         {
             InitializeComponent();
@@ -48,6 +49,8 @@ namespace TRYINGSMT
             _rotor = false; // Initially rotor is off
             btnRotor.Content = "Rotor On"; // Set button text
             btnRotor.IsEnabled = false; // Disable rotor button until plugboard is set
+
+
         }
 
         // Display rotor wiring in UI labels

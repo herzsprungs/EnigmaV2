@@ -135,5 +135,23 @@
   <ItemGroup>
     <Resource Include="NEWJEANSlogoPIC.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="drawingME.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ps5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="DESIGNforTODOLIST.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="heartDESIGNtodolist.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Blue and White Y2K About Me Collage Instagram Story %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Blue and White Y2K About Me Collage Instagram Story %282%29.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

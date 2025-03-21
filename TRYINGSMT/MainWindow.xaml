@@ -5,85 +5,126 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TRYINGSMT"
         mc:Ignorable="d"
-        Title="MainWindow" Height="1000" Width="800" WindowStartupLocation="CenterScreen">
+        Title="MainWindow" Height="800" Width="1200" WindowStartupLocation="CenterScreen">
     <Window.Background>
         <ImageBrush ImageSource="/MAINbg.png"/>
     </Window.Background>
     <Grid Margin="10,10,0,0">
 
 
-        <Image Margin="62,790,396,-104" Source="/RACELanePIC.png" Stretch="Fill" RenderTransformOrigin="0.5,0.5">
-            <Image.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="0.138"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Image.RenderTransform>
-        </Image>
+        <Image Margin="751,201,-17,0" Source="/DESIGNforTODOLIST.png" Stretch="Fill"/>
 
 
-        <Image Margin="-6,199,490,592" Source="/backgroundRING.png" Stretch="Fill"/>
+        <Image Margin="321,550,567,25" Source="/backgroundRING.png" Stretch="Fill" Opacity="0.9"/>
 
 
-        <Image Margin="-6,384,490,407" Source="/backgroundRING.png" Stretch="Fill"/>
+        <Image Margin="-1,550,889,25" Source="/backgroundRING.png" Stretch="Fill" Opacity="0.9"/>
 
 
-        <Image Margin="-5,565,489,224" Source="/backgroundRING.png" Stretch="Fill"/>
+        <Image Margin="321,182,567,394" Source="/backgroundRING.png" Stretch="Fill" Opacity="0.9"/>
 
 
-        <Image Margin="-6,751,489,40" Source="/backgroundRING.png" Stretch="Fill"/>
+        <Image Margin="-1,182,889,394" Source="/backgroundRING.png" Stretch="Fill" Opacity="0.9"/>
 
 
-        <Rectangle HorizontalAlignment="Left" Width="10" Height="10" Margin="790,317,0,0" Stroke="Black" VerticalAlignment="Top" Opacity="0"/>
-        <Label Content="Control" HorizontalAlignment="Left" Margin="107,228,0,0" VerticalAlignment="Top" FontFamily="DePixel" FontSize="10"/>
-        <Label Content="Ring 1 (S)" HorizontalAlignment="Left" Margin="104,412,0,0" VerticalAlignment="Top" FontFamily="DePixel" FontSize="10"/>
-        <Label Content="Ring 2 (M)" HorizontalAlignment="Left" Margin="109,590,0,0" VerticalAlignment="Top" FontFamily="DePixel" FontSize="10"/>
-        <Label Content="Ring 3 (H)" HorizontalAlignment="Left" Margin="109,777,0,0" VerticalAlignment="Top" FontFamily="DePixel" FontSize="10"/>
-        <Label x:Name="lblControlRing" Content="Label" HorizontalAlignment="Left" Margin="5,249,0,0" VerticalAlignment="Top" Width="268" FontFamily="DePixel Breit"/>
-        <Label x:Name="lblRing1" Content="Label" HorizontalAlignment="Left" Margin="11,437,0,0" VerticalAlignment="Top" FontFamily="DePixel Breit"/>
-        <Label x:Name="lblRing2" Content="Label" HorizontalAlignment="Left" Margin="11,621,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.447,0.425" FontFamily="DePixel Breit"/>
-        <Label x:Name="lblRing3" Content="Label" HorizontalAlignment="Left" Margin="15,797,0,0" VerticalAlignment="Top" FontFamily="DePixel Breit"/>
+        <Image Margin="0,365,889,211" Source="/backgroundRING.png" Stretch="Fill" Opacity="0.9"/>
+
+
+        <Image Margin="322,365,567,211" Source="/backgroundRING.png" Stretch="Fill" Opacity="0.9"/>
+
+
+        <Rectangle HorizontalAlignment="Left" Width="10" Height="10" Margin="774,331,0,0" Stroke="Black" VerticalAlignment="Top" Opacity="0"/>
+        <Label Content="Control" HorizontalAlignment="Left" Margin="104,209,0,0" VerticalAlignment="Top" FontFamily="DePixel" FontSize="10" Foreground="#FF00065F"/>
+        <Label Content="Ring 1 (S)" HorizontalAlignment="Left" Margin="104,391,0,0" VerticalAlignment="Top" FontFamily="DePixel" FontSize="10" Opacity="0.9" Foreground="#FF00065F"/>
+        <Label Content="Ring 2 (M)" HorizontalAlignment="Left" Margin="435,209,0,0" VerticalAlignment="Top" FontFamily="DePixel" FontSize="10" Foreground="#FF00065F"/>
+        <Label Content="Ring 3 (H)" HorizontalAlignment="Left" Margin="432,392,0,0" VerticalAlignment="Top" FontFamily="DePixel" FontSize="10" Width="104" Height="27" Opacity="0.9" Foreground="#FF00065F"/>
+        <Label x:Name="lblControlRing" Content="Label" HorizontalAlignment="Left" Margin="15,230,0,0" VerticalAlignment="Top" Width="268" FontFamily="DePixel Breit" Opacity="0.9" Foreground="#FF00065F"/>
+        <Label x:Name="lblRing1" Content="Label" HorizontalAlignment="Left" Margin="15,413,0,0" VerticalAlignment="Top" FontFamily="DePixel Breit" Opacity="0.9" Foreground="#FF00065F"/>
+        <Label x:Name="lblRing2" Content="Label" HorizontalAlignment="Left" Margin="335,230,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.447,0.425" FontFamily="DePixel Breit" Opacity="0.9" Foreground="#FF00065F"/>
+        <Label x:Name="lblRing3" Content="Label" HorizontalAlignment="Left" Margin="336,411,0,0" VerticalAlignment="Top" FontFamily="DePixel Breit" Width="278" Height="125" Opacity="0.9" Foreground="#FF00065F"/>
         <TextBox x:Name="txtInput" TextChanged="txtInput_TextChanged"
-         HorizontalAlignment="Left" Margin="300,199,0,0" VerticalAlignment="Top"
-         FontFamily="Courier New" Width="446" Height="41">
+         HorizontalAlignment="Left" Margin="669,206,0,0" VerticalAlignment="Top"
+         FontFamily="Courier New" Width="464" Height="40">
             <TextBox.Background>
                 <ImageBrush ImageSource="/backgroundRING.png" TileMode="None" Stretch="None"/>
             </TextBox.Background>
         </TextBox>
-        <TextBox x:Name="txtEncrypt" Text="Encrypt" HorizontalAlignment="Left" Margin="300,280,0,0" VerticalAlignment="Top" FontFamily="Courier New" Width="446" Height="41" IsEnabled="False" Foreground="Black">
+        <TextBox x:Name="txtEncrypt" Text="Encrypt" HorizontalAlignment="Left" Margin="669,286,0,0" VerticalAlignment="Top" FontFamily="Courier New" Width="464" Height="42" IsEnabled="False" Foreground="Black">
             <TextBox.Background>
                 <ImageBrush ImageSource="/backgroundRING.png" Stretch="None"/>
             </TextBox.Background>
         </TextBox>
-        <TextBox x:Name="txtEncryptMirror" Text="Mirror" HorizontalAlignment="Left" Margin="300,359,0,0" VerticalAlignment="Top" FontFamily="Courier New" Width="446" Height="42" IsEnabled="False">
+        <TextBox x:Name="txtEncryptMirror" Text="Mirror" HorizontalAlignment="Left" Margin="669,0,0,0" VerticalAlignment="Center" FontFamily="Courier New" Width="464" Height="42" IsEnabled="False">
             <TextBox.Background>
                 <ImageBrush ImageSource="/backgroundRING.png" Stretch="None"/>
             </TextBox.Background>
         </TextBox>
-        <Button x:Name="btnRotor"  Content="Rotor On" HorizontalAlignment="Left" Margin="4,171,0,0" VerticalAlignment="Top" Click="btnRotor_Click" FontFamily="DePixel" Width="49" FontSize="7" Height="20"/>
-        <TextBox x:Name="txtBRing1Init" HorizontalAlignment="Left" Margin="74,173,0,0" TextWrapping="Wrap" Text="0 - 25" VerticalAlignment="Top" Width="56" Height="18" GotFocus="txtBRing1Init_GotFocus" HorizontalContentAlignment="Center" RenderTransformOrigin="-0.431,0.41" FontFamily="DePixel Breit"/>
-        <TextBox x:Name="txtBRing2Init" HorizontalAlignment="Left" Margin="162,173,0,0" TextWrapping="Wrap" Text="0 - 25" VerticalAlignment="Top" Width="55" GotFocus="txtBRing2Init_GotFocus" HorizontalContentAlignment="Center" FontFamily="DePixel Breit"/>
-        <TextBox x:Name="txtBRing3Init" HorizontalAlignment="Left" Margin="238,173,0,0" TextWrapping="Wrap" Text="0 -25" VerticalAlignment="Top" Width="49" Height="18" GotFocus="txtBRing3Init_GotFocus" HorizontalContentAlignment="Center" FontFamily="DePixel Breit"/>
-        <Label Content="H" HorizontalAlignment="Left" Margin="58,165,0,0" VerticalAlignment="Top" FontFamily="DePixel"/>
-        <Label Content="M" HorizontalAlignment="Left" Margin="136,165,0,0" VerticalAlignment="Top" FontFamily="DePixel"/>
-        <Label Content="S" HorizontalAlignment="Left" Margin="222,165,0,0" VerticalAlignment="Top" FontFamily="DePixel"/>
+        <Button x:Name="btnRotor"  Content="Rotor On" HorizontalAlignment="Left" Margin="346,591,0,0" VerticalAlignment="Top" Click="btnRotor_Click" FontFamily="DePixel" Width="184" Height="45" RenderTransformOrigin="0.531,1.019" Foreground="#FF00065F"/>
+        <TextBox x:Name="txtBRing1Init" HorizontalAlignment="Left" Margin="357,663,0,0" TextWrapping="Wrap" Text="0 - 25" VerticalAlignment="Top" Width="56" Height="24" GotFocus="txtBRing1Init_GotFocus" HorizontalContentAlignment="Center" RenderTransformOrigin="-0.431,0.41" FontFamily="DePixel Breit" Foreground="#FF00065F"/>
+        <TextBox x:Name="txtBRing2Init" HorizontalAlignment="Left" Margin="452,663,0,0" TextWrapping="Wrap" Text="0 - 25" VerticalAlignment="Top" Width="55" GotFocus="txtBRing2Init_GotFocus" HorizontalContentAlignment="Center" FontFamily="DePixel Breit" Foreground="#FF00065F"/>
+        <TextBox x:Name="txtBRing3Init" HorizontalAlignment="Left" Margin="545,663,0,0" TextWrapping="Wrap" Text="0 -25" VerticalAlignment="Top" Width="50" Height="24" GotFocus="txtBRing3Init_GotFocus" HorizontalContentAlignment="Center" FontFamily="DePixel Breit" Foreground="#FF00065F"/>
+        <Label Content="H" HorizontalAlignment="Left" Margin="336,659,0,0" VerticalAlignment="Top" FontFamily="DePixel" RenderTransformOrigin="2.138,0.767" Foreground="#FF00065F"/>
+        <Label Content="M" HorizontalAlignment="Left" Margin="426,659,0,0" VerticalAlignment="Top" FontFamily="DePixel" Foreground="#FF00065F"/>
+        <Label Content="S" HorizontalAlignment="Left" Margin="525,659,0,0" VerticalAlignment="Top" FontFamily="DePixel" Foreground="#FF00065F"/>
 
-        <Label Content="Input Message:" HorizontalAlignment="Left" Margin="296,167,0,0" VerticalAlignment="Top" Width="150" Height="44" FontFamily="DePixel"/>
-        <Label Content="Encrypted Message:" HorizontalAlignment="Left" Margin="296,248,0,0" VerticalAlignment="Top" Width="192" Height="46" FontFamily="DePixel"/>
-        <Label Content="Encrypted Message with Mirroring:" HorizontalAlignment="Left" Margin="296,331,0,0" VerticalAlignment="Top" Width="345" Height="44" FontFamily="DePixel"/>
-        <Label Content="Plugboard (AB CD EF):" HorizontalAlignment="Left" Margin="296,416,0,0" VerticalAlignment="Top" Width="158" Height="45" FontFamily="DePixel" FontSize="10"/>
-        <TextBox x:Name="txtPlugboard" HorizontalAlignment="Left" Margin="449,417,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="208" TextChanged="txtPlugboard_TextChanged" Height="31">
+        <Label Content="Input Message:" HorizontalAlignment="Left" Margin="665,174,0,0" VerticalAlignment="Top" Width="156" Height="44" FontFamily="DePixel" Foreground="#FF00065F"/>
+        <Label Content="Encrypted Message:" HorizontalAlignment="Left" Margin="665,254,0,0" VerticalAlignment="Top" Width="200" Height="46" FontFamily="DePixel" Foreground="#FF00065F"/>
+        <Label Content="Encrypted Message with Mirroring:" HorizontalAlignment="Left" Margin="665,328,0,0" VerticalAlignment="Top" Width="358" Height="44" FontFamily="DePixel" Foreground="#FF00065F"/>
+        <Label Content="Plugboard (AB CD EF):" HorizontalAlignment="Left" Margin="669,423,0,0" VerticalAlignment="Top" Width="164" Height="45" FontFamily="DePixel" FontSize="10" Foreground="#FF00065F"/>
+        <TextBox x:Name="txtPlugboard" HorizontalAlignment="Left" Margin="825,423,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="216" TextChanged="txtPlugboard_TextChanged" Height="32">
             <TextBox.Background>
                 <ImageBrush ImageSource="/backgroundRING.png" Stretch="None"/>
             </TextBox.Background>
         </TextBox>
-        <Button x:Name="btnSetPlugboard" Content="Set Plugboard" HorizontalAlignment="Left" Margin="662,417,0,0" VerticalAlignment="Top" Click="btnSetPlugboard_Click" Width="84" Height="31" FontFamily="DePixel" FontSize="8"/>
-        <Image Margin="182,-13,188,801" Source="/Blue Colorful 8Bit Game Presentation.png" Stretch="Fill"/>
-        <Image Margin="0,5,13,783" Source="/clouds.png" Stretch="Fill"/>
-        <Image Margin="211,527,447,334" Source="/BUNNYbongPIC.png" Stretch="Fill" Opacity="0.9"/>
-        <Image Margin="680,298,-27,513" Source="/DICEpic.png" Stretch="Fill"/>
+        <Button x:Name="btnSetPlugboard" Content="Set Plugboard" HorizontalAlignment="Left" Margin="1045,423,0,0" VerticalAlignment="Top" Click="btnSetPlugboard_Click" Width="88" Height="32" FontFamily="DePixel" FontSize="8" Foreground="#FF00065F"/>
+        <Image Margin="339,-16,325,578" Source="/Blue Colorful 8Bit Game Presentation.png" Stretch="Fill"/>
+        <Image Margin="15,10,50,578" Source="/clouds.png" Stretch="Fill" RenderTransformOrigin="0.311,0.672"/>
+        <Image Margin="1065,304,-433,469" Source="/DICEpic.png" Stretch="Fill"/>
+        <Label Content="Reflector" HorizontalAlignment="Left" Margin="98,578,0,0" VerticalAlignment="Top" FontFamily="DePixel" FontSize="10" Width="104" Height="26" Opacity="0.9" Foreground="#FF00065F"/>
+        <Image Margin="847,262,272,469" Source="/heartDESIGNtodolist.png" Stretch="Fill"/>
+        <Image Margin="808,183,310,548" Source="/heartDESIGNtodolist.png" Stretch="Fill"/>
+        <Image Margin="979,337,140,394" Source="/heartDESIGNtodolist.png" Stretch="Fill"/>
+        <Button x:Name="LetterQ" Content="Q" HorizontalAlignment="Left" Margin="669,486,0,0" VerticalAlignment="Top"  Width="40" Height="50" FontFamily="DePixel" FontSize="8"/>
+        <Button x:Name="LetterW" Content="W" HorizontalAlignment="Left" Margin="714,486,0,0" VerticalAlignment="Top"  Width="40" Height="50" FontFamily="DePixel" FontSize="8"/>
+        <Button x:Name="LetterE" Content="E" HorizontalAlignment="Left" Margin="759,486,0,0" VerticalAlignment="Top"  Width="40" Height="50" FontFamily="DePixel" FontSize="8"/>
+        <Button x:Name="LetterR" Content="R" HorizontalAlignment="Left" Margin="804,486,0,0" VerticalAlignment="Top"  Width="40" Height="50" FontFamily="DePixel" FontSize="8"/>
+        <Button x:Name="LetterT" Content="T" HorizontalAlignment="Left" Margin="849,486,0,0" VerticalAlignment="Top"  Width="40" Height="50" FontFamily="DePixel" FontSize="8"/>
+        <Button x:Name="LetterY" Content="Y" HorizontalAlignment="Left" Margin="893,486,0,0" VerticalAlignment="Top"  Width="40" Height="50" FontFamily="DePixel" FontSize="8"/>
+        <Button x:Name="LetterU" Content="U" HorizontalAlignment="Left" Margin="938,486,0,0" VerticalAlignment="Top"  Width="40" Height="50" FontFamily="DePixel" FontSize="8"/>
+        <Button x:Name="LetterI" Content="I" HorizontalAlignment="Left" Margin="983,486,0,0" VerticalAlignment="Top"  Width="40" Height="50" FontFamily="DePixel" FontSize="8"/>
+        <Button x:Name="LetterO" Content="O" HorizontalAlignment="Left" Margin="1028,486,0,0" VerticalAlignment="Top"  Width="40" Height="50" FontFamily="DePixel" FontSize="8"/>
+        <Button x:Name="LetterP" Content="P" HorizontalAlignment="Left" Margin="1073,486,0,0" VerticalAlignment="Top"  Width="40" Height="50" FontFamily="DePixel" FontSize="8"/>
+        <Button x:Name="LetterA" Content="A" HorizontalAlignment="Left" Margin="689,541,0,0" VerticalAlignment="Top"  Width="40" Height="50" FontFamily="DePixel" FontSize="8"/>
+        <Button x:Name="LetterS" Content="S" HorizontalAlignment="Left" Margin="734,541,0,0" VerticalAlignment="Top"  Width="40" Height="50" FontFamily="DePixel" FontSize="8"/>
+        <Button x:Name="LetterD" Content="D" HorizontalAlignment="Left" Margin="779,541,0,0" VerticalAlignment="Top"  Width="40" Height="50" FontFamily="DePixel" FontSize="8"/>
+        <Button x:Name="LetterF" Content="F" HorizontalAlignment="Left" Margin="824,541,0,0" VerticalAlignment="Top"  Width="40" Height="50" FontFamily="DePixel" FontSize="8"/>
+        <Button x:Name="LetterG" Content="G" HorizontalAlignment="Left" Margin="869,541,0,0" VerticalAlignment="Top"  Width="40" Height="50" FontFamily="DePixel" FontSize="8"/>
+        <Button x:Name="LetterH" Content="H" HorizontalAlignment="Left" Margin="913,541,0,0" VerticalAlignment="Top"  Width="40" Height="50" FontFamily="DePixel" FontSize="8"/>
+        <Button x:Name="LetterJ" Content="J" HorizontalAlignment="Left" Margin="958,541,0,0" VerticalAlignment="Top"  Width="40" Height="50" FontFamily="DePixel" FontSize="8"/>
+        <Button x:Name="LetterK" Content="K" HorizontalAlignment="Left" Margin="1003,541,0,0" VerticalAlignment="Top"  Width="40" Height="50" FontFamily="DePixel" FontSize="8"/>
+        <Button x:Name="LetterL" Content="L" HorizontalAlignment="Left" Margin="1048,541,0,0" VerticalAlignment="Top"  Width="40" Height="50" FontFamily="DePixel" FontSize="8"/>
+        <Button x:Name="LetterZ" Content="Z" HorizontalAlignment="Left" Margin="703,596,0,0" VerticalAlignment="Top"  Width="40" Height="50" FontFamily="DePixel" FontSize="8"/>
+        <Button x:Name="LetterX" Content="X" HorizontalAlignment="Left" Margin="748,596,0,0" VerticalAlignment="Top"  Width="40" Height="50" FontFamily="DePixel" FontSize="8"/>
+        <Button x:Name="LetterC" Content="C" HorizontalAlignment="Left" Margin="793,596,0,0" VerticalAlignment="Top"  Width="40" Height="50" FontFamily="DePixel" FontSize="8"/>
+        <Button x:Name="LetterV" Content="V" HorizontalAlignment="Left" Margin="838,596,0,0" VerticalAlignment="Top"  Width="40" Height="50" FontFamily="DePixel" FontSize="8"/>
+        <Button x:Name="LetterB" Content="B" HorizontalAlignment="Left" Margin="883,596,0,0" VerticalAlignment="Top"  Width="40" Height="50" FontFamily="DePixel" FontSize="8"/>
+        <Button x:Name="LetterN" Content="N" HorizontalAlignment="Left" Margin="928,596,0,0" VerticalAlignment="Top"  Width="40" Height="50" FontFamily="DePixel" FontSize="8"/>
+        <Button x:Name="LetterM" Content="M" HorizontalAlignment="Left" Margin="973,596,0,0" VerticalAlignment="Top"  Width="40" Height="50" FontFamily="DePixel" FontSize="8"/>
+        <Button x:Name="ButtonBackspace" Content="Backspace" HorizontalAlignment="Left" Margin="1018,596,0,0" VerticalAlignment="Top"  Width="66" Height="50" FontFamily="DePixel" FontSize="8"/>
+        <Button x:Name="ButtonSpace" Content="SPACE" HorizontalAlignment="Left" Margin="723,657,0,0" VerticalAlignment="Top"  Width="327" Height="50" FontFamily="DePixel" FontSize="8"/>
+        <Image Margin="318,-9,798,697" Source="/Blue and White Y2K About Me Collage Instagram Story (1).png" Stretch="Fill" RenderTransformOrigin="0.5,0.5">
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-18.419"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+        <Image Margin="545,591,595,116" Source="/Blue and White Y2K About Me Collage Instagram Story (2).png" Stretch="Fill"/>
+
+
 
 
     </Grid>
