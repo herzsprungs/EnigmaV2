@@ -39,9 +39,9 @@
         <Label Content="Ring 2 (M)" HorizontalAlignment="Left" Margin="435,209,0,0" VerticalAlignment="Top" FontFamily="DePixel" FontSize="10" Foreground="#FF00065F"/>
         <Label Content="Ring 3 (H)" HorizontalAlignment="Left" Margin="432,392,0,0" VerticalAlignment="Top" FontFamily="DePixel" FontSize="10" Width="104" Height="27" Opacity="0.9" Foreground="#FF00065F"/>
         <Label x:Name="lblControlRing" Content="Label" HorizontalAlignment="Left" Margin="15,230,0,0" VerticalAlignment="Top" Width="268" FontFamily="DePixel Breit" Opacity="0.9" Foreground="#FF00065F"/>
-        <Label x:Name="lblRing1" Content="Label" HorizontalAlignment="Left" Margin="15,413,0,0" VerticalAlignment="Top" FontFamily="DePixel Breit" Opacity="0.9" Foreground="#FF00065F"/>
+        <Label x:Name="lblRing1" Content="Label" HorizontalAlignment="Left" Margin="339,414,0,0" VerticalAlignment="Top" FontFamily="DePixel Breit" Opacity="0.9" Foreground="#FF00065F"/>
         <Label x:Name="lblRing2" Content="Label" HorizontalAlignment="Left" Margin="335,230,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.447,0.425" FontFamily="DePixel Breit" Opacity="0.9" Foreground="#FF00065F"/>
-        <Label x:Name="lblRing3" Content="Label" HorizontalAlignment="Left" Margin="336,411,0,0" VerticalAlignment="Top" FontFamily="DePixel Breit" Width="278" Height="125" Opacity="0.9" Foreground="#FF00065F"/>
+        <Label x:Name="lblRing3" Content="Label" HorizontalAlignment="Left" Margin="12,414,0,0" VerticalAlignment="Top" FontFamily="DePixel Breit" Width="278" Height="126" Opacity="0.9" Foreground="#FF00065F"/>
         <TextBox x:Name="txtInput" TextChanged="txtInput_TextChanged"
          HorizontalAlignment="Left" Margin="669,206,0,0" VerticalAlignment="Top"
          FontFamily="Courier New" Width="464" Height="40">
@@ -60,9 +60,9 @@
             </TextBox.Background>
         </TextBox>
         <Button x:Name="btnRotor"  Content="Rotor On" HorizontalAlignment="Left" Margin="346,591,0,0" VerticalAlignment="Top" Click="btnRotor_Click" FontFamily="DePixel" Width="184" Height="45" RenderTransformOrigin="0.531,1.019" Foreground="#FF00065F"/>
-        <TextBox x:Name="txtBRing1Init" HorizontalAlignment="Left" Margin="357,663,0,0" TextWrapping="Wrap" Text="0 - 25" VerticalAlignment="Top" Width="56" Height="24" GotFocus="txtBRing1Init_GotFocus" HorizontalContentAlignment="Center" RenderTransformOrigin="-0.431,0.41" FontFamily="DePixel Breit" Foreground="#FF00065F"/>
-        <TextBox x:Name="txtBRing2Init" HorizontalAlignment="Left" Margin="452,663,0,0" TextWrapping="Wrap" Text="0 - 25" VerticalAlignment="Top" Width="55" GotFocus="txtBRing2Init_GotFocus" HorizontalContentAlignment="Center" FontFamily="DePixel Breit" Foreground="#FF00065F"/>
-        <TextBox x:Name="txtBRing3Init" HorizontalAlignment="Left" Margin="545,663,0,0" TextWrapping="Wrap" Text="0 -25" VerticalAlignment="Top" Width="50" Height="24" GotFocus="txtBRing3Init_GotFocus" HorizontalContentAlignment="Center" FontFamily="DePixel Breit" Foreground="#FF00065F"/>
+        <TextBox x:Name="txtBRing1Init" HorizontalAlignment="Left" Margin="357,663,0,0" TextWrapping="Wrap" Text="0 - 25" VerticalAlignment="Top" Width="56" Height="24"  HorizontalContentAlignment="Center" RenderTransformOrigin="-0.431,0.41" FontFamily="DePixel Breit" Foreground="#FF00065F"/>
+        <TextBox x:Name="txtBRing2Init" HorizontalAlignment="Left" Margin="452,663,0,0" TextWrapping="Wrap" Text="0 - 25" VerticalAlignment="Top" Width="55"  HorizontalContentAlignment="Center" FontFamily="DePixel Breit" Foreground="#FF00065F"/>
+        <TextBox x:Name="txtBRing3Init" HorizontalAlignment="Left" Margin="545,663,0,0" TextWrapping="Wrap" Text="0 -25" VerticalAlignment="Top" Width="50" Height="24"  HorizontalContentAlignment="Center" FontFamily="DePixel Breit" Foreground="#FF00065F"/>
         <Label Content="H" HorizontalAlignment="Left" Margin="336,659,0,0" VerticalAlignment="Top" FontFamily="DePixel" RenderTransformOrigin="2.138,0.767" Foreground="#FF00065F"/>
         <Label Content="M" HorizontalAlignment="Left" Margin="426,659,0,0" VerticalAlignment="Top" FontFamily="DePixel" Foreground="#FF00065F"/>
         <Label Content="S" HorizontalAlignment="Left" Margin="525,659,0,0" VerticalAlignment="Top" FontFamily="DePixel" Foreground="#FF00065F"/>
@@ -110,8 +110,8 @@
         <Button x:Name="LetterB" Content="B" HorizontalAlignment="Left" Margin="883,596,0,0" VerticalAlignment="Top"  Width="40" Height="50" FontFamily="DePixel" FontSize="8"/>
         <Button x:Name="LetterN" Content="N" HorizontalAlignment="Left" Margin="928,596,0,0" VerticalAlignment="Top"  Width="40" Height="50" FontFamily="DePixel" FontSize="8"/>
         <Button x:Name="LetterM" Content="M" HorizontalAlignment="Left" Margin="973,596,0,0" VerticalAlignment="Top"  Width="40" Height="50" FontFamily="DePixel" FontSize="8"/>
-        <Button x:Name="ButtonBackspace" Content="Backspace" HorizontalAlignment="Left" Margin="1018,596,0,0" VerticalAlignment="Top"  Width="66" Height="50" FontFamily="DePixel" FontSize="8"/>
-        <Button x:Name="ButtonSpace" Content="SPACE" HorizontalAlignment="Left" Margin="723,657,0,0" VerticalAlignment="Top"  Width="327" Height="50" FontFamily="DePixel" FontSize="8"/>
+        <Button x:Name="ButtonBackspace" Content="Backspace" HorizontalAlignment="Left" Margin="1018,596,0,0" VerticalAlignment="Top"  Width="66" Height="50" FontFamily="DePixel" FontSize="8" Click="ButtonBackspace_Click"/>
+        <Button x:Name="ButtonSpace" Content="SPACE" HorizontalAlignment="Left" Margin="723,657,0,0" VerticalAlignment="Top"  Width="327" Height="50" FontFamily="DePixel" FontSize="8" Click="ButtonSpace_Click"/>
         <Image Margin="318,-9,798,697" Source="/Blue and White Y2K About Me Collage Instagram Story (1).png" Stretch="Fill" RenderTransformOrigin="0.5,0.5">
             <Image.RenderTransform>
                 <TransformGroup>
@@ -122,7 +122,8 @@
                 </TransformGroup>
             </Image.RenderTransform>
         </Image>
-        <Image Margin="545,591,595,116" Source="/Blue and White Y2K About Me Collage Instagram Story (2).png" Stretch="Fill"/>
+        <Image Margin="545,591,588,116" Source="/Blue and White Y2K About Me Collage Instagram Story (2).png" Stretch="Fill"/>
+        <Label x:Name="ReflectorLabel" Content="Label" HorizontalAlignment="Left" Margin="15,598,0,0" VerticalAlignment="Top" FontFamily="DePixel Breit" Opacity="0.9" Foreground="#FF00065F"/>
 
 
 
