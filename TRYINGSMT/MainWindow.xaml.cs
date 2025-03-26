@@ -16,29 +16,20 @@ using System.Windows.Shapes;
 
 namespace TRYINGSMT
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
+    
     public partial class MainWindow : Window
     {
-        // Constants for rotor wiring and reflector (as in your code)
+        
         string _control = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         string _ring1 = "DMTWSILRUYQNKFEJCAZBPGXOHV";
         string _ring2 = "HQZGPJTMOBLNCIFDYAWVEUSRKX";
         string _ring3 = "UQNTLSZFMREHDPXKIBVYGJCWOA";
         string _reflector = "YRUHQSLDPXNGOKMIEBFZCWVJAT";
-
-        // Rotor offset tracking
         int[] _keyOffset = { 0, 0, 0 };
         int[] _initOffset = { 0, 0, 0 };
-
-        // Rotor state flag
         bool _rotor = false;
-
-        // Plugboard setup
         Dictionary<char, char> _plugboard = new Dictionary<char, char>();
         private bool _plugboardSet = false;
-
         private TextBox _activeTextBox;
         private int _previousInputLength = 0;
 
@@ -50,37 +41,35 @@ namespace TRYINGSMT
             btnRotor.Content = "Rotor On";
             btnRotor.IsEnabled = false;
 
-            // Attach click event handlers to all letter buttons
-            LetterQ.Click += LetterButton_Click;
-            LetterW.Click += LetterButton_Click;
-            LetterE.Click += LetterButton_Click;
-            LetterR.Click += LetterButton_Click;
-            LetterT.Click += LetterButton_Click;
-            LetterY.Click += LetterButton_Click;
-            LetterU.Click += LetterButton_Click;
-            LetterI.Click += LetterButton_Click;
-            LetterO.Click += LetterButton_Click;
-            LetterP.Click += LetterButton_Click;
-            LetterA.Click += LetterButton_Click;
-            LetterS.Click += LetterButton_Click;
-            LetterD.Click += LetterButton_Click;
-            LetterF.Click += LetterButton_Click;
-            LetterG.Click += LetterButton_Click;
-            LetterH.Click += LetterButton_Click;
-            LetterJ.Click += LetterButton_Click;
-            LetterK.Click += LetterButton_Click;
-            LetterL.Click += LetterButton_Click;
-            LetterZ.Click += LetterButton_Click;
-            LetterX.Click += LetterButton_Click;
-            LetterC.Click += LetterButton_Click;
-            LetterV.Click += LetterButton_Click;
-            LetterB.Click += LetterButton_Click;
-            LetterN.Click += LetterButton_Click;
-            LetterM.Click += LetterButton_Click;
+            
+            LetterQ.Click += VISUALkeyboard;
+            LetterW.Click += VISUALkeyboard;
+            LetterE.Click += VISUALkeyboard;
+            LetterR.Click += VISUALkeyboard;
+            LetterT.Click += VISUALkeyboard;
+            LetterY.Click += VISUALkeyboard;
+            LetterU.Click += VISUALkeyboard;
+            LetterI.Click += VISUALkeyboard;
+            LetterO.Click += VISUALkeyboard;
+            LetterP.Click += VISUALkeyboard;
+            LetterA.Click += VISUALkeyboard;
+            LetterS.Click += VISUALkeyboard;
+            LetterD.Click += VISUALkeyboard;
+            LetterF.Click += VISUALkeyboard;
+            LetterG.Click += VISUALkeyboard;
+            LetterH.Click += VISUALkeyboard;
+            LetterJ.Click += VISUALkeyboard;
+            LetterK.Click += VISUALkeyboard;
+            LetterL.Click += VISUALkeyboard;
+            LetterZ.Click += VISUALkeyboard;
+            LetterX.Click += VISUALkeyboard;
+            LetterC.Click += VISUALkeyboard;
+            LetterV.Click += VISUALkeyboard;
+            LetterB.Click += VISUALkeyboard;
+            LetterN.Click += VISUALkeyboard;
+            LetterM.Click += VISUALkeyboard;
             ButtonBackspace.Click += ButtonBackspace_Click;
             ButtonSpace.Click += ButtonSpace_Click;
-
-            // Attach GotFocus event handlers to your textboxes
             txtInput.GotFocus += TextBox_GotFocus;
             txtPlugboard.GotFocus += TextBox_GotFocus;
             txtBRing1Init.GotFocus += TextBox_GotFocus;
@@ -88,13 +77,31 @@ namespace TRYINGSMT
             txtBRing3Init.GotFocus += TextBox_GotFocus;
         }
 
-        private void LetterButton_Click(object sender, RoutedEventArgs e)
+        private void ButtonSpace_Click(object sender, RoutedEventArgs e)
+        {
+            if (_activeTextBox != null)
+            {
+                _activeTextBox.Text += " ";
+                _activeTextBox.CaretIndex = _activeTextBox.Text.Length;
+            }
+        }
+
+        private void ButtonBackspace_Click(object sender, RoutedEventArgs e)
+        {
+            if (_activeTextBox != null && _activeTextBox.Text.Length > 0)
+            {
+                _activeTextBox.Text = _activeTextBox.Text.Substring(0, _activeTextBox.Text.Length - 1);
+                _activeTextBox.CaretIndex = _activeTextBox.Text.Length;
+            }
+        }
+
+        private void VISUALkeyboard(object sender, RoutedEventArgs e)
         {
             if (_activeTextBox != null)
             {
                 Button clickedButton = (Button)sender;
                 _activeTextBox.Text += clickedButton.Content.ToString();
-                _activeTextBox.CaretIndex = _activeTextBox.Text.Length; //Move caret to end
+                _activeTextBox.CaretIndex = _activeTextBox.Text.Length;
             }
         }
 
@@ -103,7 +110,7 @@ namespace TRYINGSMT
             _activeTextBox = (TextBox)sender;
         }
 
-        private void DisplayRing(Label displayLabel, string ring)
+        private void ROTORdisplay(Label displayLabel, string ring)
         {
             int length = ring.Length;
             int columns = (int)Math.Ceiling(Math.Sqrt(length));
@@ -142,7 +149,7 @@ namespace TRYINGSMT
 
             if (input.Length < _previousInputLength)
             {
-                // Handle deletion (no rotor rotation)
+               
                 if (txtEncrypt.Text.Length > 0 && txtEncryptMirror.Text.Length > 0)
                 {
                     txtEncrypt.Text = txtEncrypt.Text.Substring(0, txtEncrypt.Text.Length - 1);
@@ -155,16 +162,16 @@ namespace TRYINGSMT
 
                 if (newChar == ' ')
                 {
-                    txtEncrypt.Text += " "; // Add space without encryption
+                    txtEncrypt.Text += " "; 
                     txtEncryptMirror.Text += " ";
                 }
                 else if (char.IsLetter(newChar))
                 {
-                    // Encrypt letter and mirror
+                   
                     txtEncrypt.Text += Encrypt(newChar);
                     txtEncryptMirror.Text += Mirror(newChar);
 
-                    // Rotate rotors after encryption
+                   
                     if (_rotor)
                     {
                         Rotate(true);
@@ -172,14 +179,14 @@ namespace TRYINGSMT
                 }
                 else
                 {
-                    // Remove invalid input and show warning
+                    
                     txtInput.Text = RemoveLastLetter(input);
                     txtInput.CaretIndex = txtInput.Text.Length;
                     MessageBox.Show("Only letters and spaces are allowed!", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
 
-            // Update previous length after processing
+            
             _previousInputLength = txtInput.Text.Length;
         }
 
@@ -187,26 +194,26 @@ namespace TRYINGSMT
         {
             char newChar = letter;
 
-            // Plugboard pass (before rotors)
+           
             if (_plugboard.ContainsKey(newChar))
                 newChar = _plugboard[newChar];
             else if (_plugboard.ContainsValue(newChar))
                 newChar = _plugboard.FirstOrDefault(x => x.Value == newChar).Key;
 
-            // Rotor pass forward
+            
             newChar = _ring1[IndexSearch(_control, newChar)];
             newChar = _ring2[IndexSearch(_control, newChar)];
             newChar = _ring3[IndexSearch(_control, newChar)];
 
-            // Reflector pass
+            
             newChar = _reflector[IndexSearch(_control, newChar)];
 
-            // Rotor pass backward
+            
             newChar = _ring3[IndexSearch(_control, newChar)];
             newChar = _ring2[IndexSearch(_control, newChar)];
             newChar = _ring1[IndexSearch(_control, newChar)];
 
-            // Plugboard pass (after rotors)
+         
             if (_plugboard.ContainsKey(newChar))
                 newChar = _plugboard[newChar];
             else if (_plugboard.ContainsValue(newChar))
@@ -239,11 +246,11 @@ namespace TRYINGSMT
             txtEncrypt.Text = "";
             txtEncryptMirror.Text = "";
 
-            DisplayRing(lblControlRing, _control);
-            DisplayRing(lblRing1, _ring1);
-            DisplayRing(lblRing2, _ring2);
-            DisplayRing(lblRing3, _ring3);
-            DisplayRing(ReflectorLabel, _reflector);
+            ROTORdisplay(lblControlRing, _control);
+            ROTORdisplay(lblRing1, _ring1);
+            ROTORdisplay(lblRing2, _ring2);
+            ROTORdisplay(lblRing3, _ring3);
+            ROTORdisplay(ReflectorLabel, _reflector);
         }
 
         private void Rotate(bool forward)
@@ -288,10 +295,10 @@ namespace TRYINGSMT
                     }
                 }
             }
-            // ✅ Update display after rotation
-            DisplayRing(lblRing1, _ring1);
-            DisplayRing(lblRing2, _ring2);
-            DisplayRing(lblRing3, _ring3);
+           
+            ROTORdisplay(lblRing1, _ring1);
+            ROTORdisplay(lblRing2, _ring2);
+            ROTORdisplay(lblRing3, _ring3);
             DisplayOffset();
            
         }
@@ -305,35 +312,31 @@ namespace TRYINGSMT
                 movingValue = ring[0];
                 for (int x = 1; x < ring.Length; x++)
                     newRing += ring[x];
-                newRing += movingValue; // Fixed syntax
+                newRing += movingValue; 
             }
             else
             {
                 movingValue = ring[25];
                 for (int x = 0; x < ring.Length - 1; x++)
                     newRing += ring[x];
-                newRing = movingValue + newRing; // Fixed syntax
+                newRing = movingValue + newRing; 
             }
 
             return newRing;
         }
-
-
-
-        // Handle rotor button click
         private void btnRotor_Click(object sender, RoutedEventArgs e)
         {
             SetDefaults();
 
-            // Validate all inputs
+            
             if (!ValidateRotorInput(txtBRing1Init.Text, 0) ||
                 !ValidateRotorInput(txtBRing2Init.Text, 1) ||
                 !ValidateRotorInput(txtBRing3Init.Text, 2))
             {
-                return; // Stop if any validation fails
+                return; 
             }
 
-            // Lock settings and initialize rotors
+           
             txtBRing1Init.IsEnabled = false;
             txtBRing2Init.IsEnabled = false;
             txtBRing3Init.IsEnabled = false;
@@ -346,9 +349,9 @@ namespace TRYINGSMT
             _ring3 = InitializeRotors(_initOffset[2], _ring3);
 
             Console.WriteLine($"Initial rotor positions: {_keyOffset[0]}, {_keyOffset[1]}, {_keyOffset[2]}");
-            DisplayRing(lblRing1, _ring1);
-            DisplayRing(lblRing2, _ring2);
-            DisplayRing(lblRing3, _ring3);
+            ROTORdisplay(lblRing1, _ring1);
+            ROTORdisplay(lblRing2, _ring2);
+            ROTORdisplay(lblRing3, _ring3);
             DisplayOffset();
         }
 
@@ -372,7 +375,7 @@ namespace TRYINGSMT
                 return false;
             }
 
-            _initOffset[rotorIndex] = value; // Set valid offset
+            _initOffset[rotorIndex] = value; 
             return true;
         }
 
@@ -412,7 +415,7 @@ namespace TRYINGSMT
 
         private void DisplayOffset()
         {
-            txtBRing1Init.Text = _keyOffset[0].ToString(); // Fixed syntax
+            txtBRing1Init.Text = _keyOffset[0].ToString(); 
             txtBRing2Init.Text = _keyOffset[1].ToString();
             txtBRing3Init.Text = _keyOffset[2].ToString();
         }
@@ -426,7 +429,7 @@ namespace TRYINGSMT
                 if (pair.Length == 2)
                 {
                     _plugboard[pair[0]] = pair[1];
-                    _plugboard[pair[1]] = pair[0]; // Fixed syntax
+                    _plugboard[pair[1]] = pair[0]; 
                 }
             }
         }
@@ -460,23 +463,7 @@ namespace TRYINGSMT
         {
         }
 
-        private void ButtonSpace_Click(object sender, RoutedEventArgs e)
-        {
-            if (_activeTextBox != null)
-            {
-                _activeTextBox.Text += " ";
-                _activeTextBox.CaretIndex = _activeTextBox.Text.Length; // Move caret to end
-            }
-        }
-
-        private void ButtonBackspace_Click(object sender, RoutedEventArgs e)
-        {
-            if (_activeTextBox != null && _activeTextBox.Text.Length > 0)
-            {
-                _activeTextBox.Text = _activeTextBox.Text.Substring(0, _activeTextBox.Text.Length - 1);
-                _activeTextBox.CaretIndex = _activeTextBox.Text.Length; // Move caret to end
-            }
-        }
+        
     }
 }
 
