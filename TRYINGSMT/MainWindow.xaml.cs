@@ -40,6 +40,7 @@ namespace TRYINGSMT
         private bool _plugboardSet = false;
 
         private TextBox _activeTextBox;
+        private int _previousInputLength = 0;
 
         public MainWindow()
         {
@@ -134,32 +135,52 @@ namespace TRYINGSMT
             return index;
         }
 
+
         private void txtInput_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (string.IsNullOrEmpty(txtInput.Text))
+            string input = txtInput.Text.ToUpper();
+
+            if (input.Length < _previousInputLength)
             {
-                txtEncrypt.Text = "";
-                txtEncryptMirror.Text = "";
-                return;
-            }
-
-            char lastChar = txtInput.Text.ToUpper().Last();
-
-            if (char.IsLetter(lastChar))
-            {
-                txtEncrypt.Text += Encrypt(lastChar);
-                txtEncryptMirror.Text += Mirror(lastChar);
-
-                if (_rotor)
+                // Handle deletion (no rotor rotation)
+                if (txtEncrypt.Text.Length > 0 && txtEncryptMirror.Text.Length > 0)
                 {
-                    Rotate(true); // Rotate AFTER encryption.
+                    txtEncrypt.Text = txtEncrypt.Text.Substring(0, txtEncrypt.Text.Length - 1);
+                    txtEncryptMirror.Text = txtEncryptMirror.Text.Substring(0, txtEncryptMirror.Text.Length - 1);
                 }
             }
-            else
+            else if (input.Length > _previousInputLength)
             {
-                txtEncrypt.Text += lastChar;
-                txtEncryptMirror.Text += lastChar;
+                char newChar = input[_previousInputLength];
+
+                if (newChar == ' ')
+                {
+                    txtEncrypt.Text += " "; // Add space without encryption
+                    txtEncryptMirror.Text += " ";
+                }
+                else if (char.IsLetter(newChar))
+                {
+                    // Encrypt letter and mirror
+                    txtEncrypt.Text += Encrypt(newChar);
+                    txtEncryptMirror.Text += Mirror(newChar);
+
+                    // Rotate rotors after encryption
+                    if (_rotor)
+                    {
+                        Rotate(true);
+                    }
+                }
+                else
+                {
+                    // Remove invalid input and show warning
+                    txtInput.Text = RemoveLastLetter(input);
+                    txtInput.CaretIndex = txtInput.Text.Length;
+                    MessageBox.Show("Only letters and spaces are allowed!", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
             }
+
+            // Update previous length after processing
+            _previousInputLength = txtInput.Text.Length;
         }
 
         private char Encrypt(char letter)
@@ -291,39 +312,62 @@ namespace TRYINGSMT
         }
 
 
-
         // Handle rotor button click
         private void btnRotor_Click(object sender, RoutedEventArgs e)
         {
             SetDefaults();
 
-            if (int.TryParse(txtBRing1Init.Text, out _initOffset[0]) &&
-                int.TryParse(txtBRing2Init.Text, out _initOffset[1]) &&
-                int.TryParse(txtBRing3Init.Text, out _initOffset[2]))
+            // Validate all inputs
+            if (!ValidateRotorInput(txtBRing1Init.Text, 0) ||
+                !ValidateRotorInput(txtBRing2Init.Text, 1) ||
+                !ValidateRotorInput(txtBRing3Init.Text, 2))
             {
-                if (_initOffset[0] >= 0 && _initOffset[0] <= 25 &&
-                    _initOffset[1] >= 0 && _initOffset[1] <= 25 &&
-                    _initOffset[2] >= 0 && _initOffset[2] <= 25)
-                {
-                    txtBRing1Init.IsEnabled = false;
-                    txtBRing2Init.IsEnabled = false;
-                    txtBRing3Init.IsEnabled = false;
-
-                    _rotor = true;
-                    btnRotor.Content = "Settings Lock";
-
-                    _ring1 = InitializeRotors(_initOffset[0], _ring1);
-                    _ring2 = InitializeRotors(_initOffset[1], _ring2);
-                    _ring3 = InitializeRotors(_initOffset[2], _ring3);
-
-                    Console.WriteLine($"Initial rotor positions: {_keyOffset[0]}, {_keyOffset[1]}, {_keyOffset[2]}"); // Added log
-                    DisplayRing(lblRing1, _ring1);
-                    DisplayRing(lblRing2, _ring2);
-                    DisplayRing(lblRing3, _ring3);
-                    DisplayOffset();
-                }
+                return; // Stop if any validation fails
             }
+
+            // Lock settings and initialize rotors
+            txtBRing1Init.IsEnabled = false;
+            txtBRing2Init.IsEnabled = false;
+            txtBRing3Init.IsEnabled = false;
+
+            _rotor = true;
+            btnRotor.Content = "Settings Lock";
+
+            _ring1 = InitializeRotors(_initOffset[0], _ring1);
+            _ring2 = InitializeRotors(_initOffset[1], _ring2);
+            _ring3 = InitializeRotors(_initOffset[2], _ring3);
+
+            Console.WriteLine($"Initial rotor positions: {_keyOffset[0]}, {_keyOffset[1]}, {_keyOffset[2]}");
+            DisplayRing(lblRing1, _ring1);
+            DisplayRing(lblRing2, _ring2);
+            DisplayRing(lblRing3, _ring3);
+            DisplayOffset();
         }
+
+        private bool ValidateRotorInput(string input, int rotorIndex)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                MessageBox.Show($"Rotor {rotorIndex + 1}: Please enter a number between 0 and 25.", "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return false;
+            }
+
+            if (!int.TryParse(input, out int value))
+            {
+                MessageBox.Show($"Rotor {rotorIndex + 1}: Input must be a valid number.", "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            if (value < 0 || value > 25)
+            {
+                MessageBox.Show($"Rotor {rotorIndex + 1}: Number must be between 0 and 25.", "Invalid Range", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            _initOffset[rotorIndex] = value; // Set valid offset
+            return true;
+        }
+
 
 
         private string InitializeRotors(int initial, string ring)
@@ -334,12 +378,13 @@ namespace TRYINGSMT
             return newRing;
         }
 
-        private string RemoveLastLetter(string word)
+        private string RemoveLastLetter(string input)
         {
-            string newWord = "";
-            for (int x = 0; x < word.Length - 1; x++)
-                newWord += word[x];
-            return newWord;
+            if (input.Length > 0)
+            {
+                return input.Substring(0, input.Length - 1);
+            }
+            return "";
         }
 
         private void txtBRing1Init_GotFocus(object sender, RoutedEventArgs e)
@@ -412,7 +457,7 @@ namespace TRYINGSMT
             if (_activeTextBox != null)
             {
                 _activeTextBox.Text += " ";
-                _activeTextBox.CaretIndex = _activeTextBox.Text.Length; //Move caret to end
+                _activeTextBox.CaretIndex = _activeTextBox.Text.Length; // Move caret to end
             }
         }
 
@@ -421,7 +466,7 @@ namespace TRYINGSMT
             if (_activeTextBox != null && _activeTextBox.Text.Length > 0)
             {
                 _activeTextBox.Text = _activeTextBox.Text.Substring(0, _activeTextBox.Text.Length - 1);
-                _activeTextBox.CaretIndex = _activeTextBox.Text.Length; //Move caret to end
+                _activeTextBox.CaretIndex = _activeTextBox.Text.Length; // Move caret to end
             }
         }
     }

@@ -71,7 +71,7 @@
         <Label Content="Encrypted Message:" HorizontalAlignment="Left" Margin="665,254,0,0" VerticalAlignment="Top" Width="200" Height="46" FontFamily="DePixel" Foreground="#FF00065F"/>
         <Label Content="Encrypted Message with Mirroring:" HorizontalAlignment="Left" Margin="665,328,0,0" VerticalAlignment="Top" Width="358" Height="44" FontFamily="DePixel" Foreground="#FF00065F"/>
         <Label Content="Plugboard (AB CD EF):" HorizontalAlignment="Left" Margin="669,423,0,0" VerticalAlignment="Top" Width="164" Height="45" FontFamily="DePixel" FontSize="10" Foreground="#FF00065F"/>
-        <TextBox x:Name="txtPlugboard" HorizontalAlignment="Left" Margin="825,423,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="216" TextChanged="txtPlugboard_TextChanged" Height="32">
+        <TextBox x:Name="txtPlugboard" HorizontalAlignment="Left" Margin="825,423,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="216" TextChanged="txtPlugboard_TextChanged" Height="32" FontFamily="DePixel" FontSize="10">
             <TextBox.Background>
                 <ImageBrush ImageSource="/backgroundRING.png" Stretch="None"/>
             </TextBox.Background>
