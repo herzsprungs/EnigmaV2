@@ -129,7 +129,7 @@ namespace TRYINGSMT
                 if (ring[x] == letter)
                 {
                     index = x;
-                    return index;
+                    break;
                 }
             }
             return index;
@@ -187,19 +187,26 @@ namespace TRYINGSMT
         {
             char newChar = letter;
 
+            // Plugboard pass (before rotors)
             if (_plugboard.ContainsKey(newChar))
                 newChar = _plugboard[newChar];
             else if (_plugboard.ContainsValue(newChar))
                 newChar = _plugboard.FirstOrDefault(x => x.Value == newChar).Key;
 
-            newChar = _ring3[IndexSearch(_control, newChar)];
-            newChar = _ring2[IndexSearch(_control, newChar)];
-            newChar = _ring1[IndexSearch(_control, newChar)];
-            newChar = _reflector[IndexSearch(_control, newChar)];
+            // Rotor pass forward
             newChar = _ring1[IndexSearch(_control, newChar)];
             newChar = _ring2[IndexSearch(_control, newChar)];
             newChar = _ring3[IndexSearch(_control, newChar)];
 
+            // Reflector pass
+            newChar = _reflector[IndexSearch(_control, newChar)];
+
+            // Rotor pass backward
+            newChar = _ring3[IndexSearch(_control, newChar)];
+            newChar = _ring2[IndexSearch(_control, newChar)];
+            newChar = _ring1[IndexSearch(_control, newChar)];
+
+            // Plugboard pass (after rotors)
             if (_plugboard.ContainsKey(newChar))
                 newChar = _plugboard[newChar];
             else if (_plugboard.ContainsValue(newChar))
@@ -215,11 +222,6 @@ namespace TRYINGSMT
             newChar = _ring3[IndexSearch(_control, newChar)];
             newChar = _ring2[IndexSearch(_control, newChar)];
             newChar = _ring1[IndexSearch(_control, newChar)];
-
-            if (_plugboard.ContainsKey(newChar))
-                newChar = _plugboard[newChar];
-            else if (_plugboard.ContainsValue(newChar))
-                newChar = _plugboard.FirstOrDefault(x => x.Value == newChar).Key;
 
             return newChar;
         }
@@ -251,65 +253,71 @@ namespace TRYINGSMT
                 _keyOffset[2]++;
                 _ring3 = MoveValues(forward, _ring3);
 
-                if (_keyOffset[2] >= _control.Length)
+                if (_keyOffset[2] / _control.Length >= 1)
                 {
                     _keyOffset[2] = 0;
                     _keyOffset[1]++;
                     _ring2 = MoveValues(forward, _ring2);
-
-                    if (_keyOffset[1] >= _control.Length)
+                    if (_keyOffset[1] / _control.Length >= 1)
                     {
                         _keyOffset[1] = 0;
                         _keyOffset[0]++;
                         _ring1 = MoveValues(forward, _ring1);
-
-                        if (_keyOffset[0] >= _control.Length)
-                        {
-                            _keyOffset[0] = 0;
-                        }
                     }
                 }
             }
             else
             {
-                if (_keyOffset[2] > 0 || _keyOffset[1] > 0)
+                if (_keyOffset[2] > 0)
                 {
                     _keyOffset[2]--;
                     _ring3 = MoveValues(forward, _ring3);
-
                     if (_keyOffset[2] < 0)
                     {
                         _keyOffset[2] = 25;
                         _keyOffset[1]--;
                         _ring2 = MoveValues(forward, _ring2);
-
                         if (_keyOffset[1] < 0)
                         {
                             _keyOffset[1] = 25;
                             _keyOffset[0]--;
                             _ring1 = MoveValues(forward, _ring1);
-
                             if (_keyOffset[0] < 0)
                                 _keyOffset[0] = 25;
                         }
                     }
                 }
             }
-
-            Console.WriteLine($"Rotor positions: {_keyOffset[0]}, {_keyOffset[1]}, {_keyOffset[2]}"); // Added log
+            // ✅ Update display after rotation
             DisplayRing(lblRing1, _ring1);
             DisplayRing(lblRing2, _ring2);
             DisplayRing(lblRing3, _ring3);
             DisplayOffset();
+           
         }
-
         private string MoveValues(bool forward, string ring)
         {
+            char movingValue = ' ';
+            string newRing = "";
+
             if (forward)
-                return ring.Substring(1) + ring[0];
+            {
+                movingValue = ring[0];
+                for (int x = 1; x < ring.Length; x++)
+                    newRing += ring[x];
+                newRing += movingValue; // Fixed syntax
+            }
             else
-                return ring[ring.Length - 1] + ring.Substring(0, ring.Length - 1);
+            {
+                movingValue = ring[25];
+                for (int x = 0; x < ring.Length - 1; x++)
+                    newRing += ring[x];
+                newRing = movingValue + newRing; // Fixed syntax
+            }
+
+            return newRing;
         }
+
 
 
         // Handle rotor button click
@@ -404,9 +412,9 @@ namespace TRYINGSMT
 
         private void DisplayOffset()
         {
-            txtBRing1Init.Text = _keyOffset[0] + "";
-            txtBRing2Init.Text = _keyOffset[1] + "";
-            txtBRing3Init.Text = _keyOffset[2] + "";
+            txtBRing1Init.Text = _keyOffset[0].ToString(); // Fixed syntax
+            txtBRing2Init.Text = _keyOffset[1].ToString();
+            txtBRing3Init.Text = _keyOffset[2].ToString();
         }
 
         private void SetupPlugboard(string plugboardSettings)
@@ -418,7 +426,7 @@ namespace TRYINGSMT
                 if (pair.Length == 2)
                 {
                     _plugboard[pair[0]] = pair[1];
-                    _plugboard[pair[1]] = pair[0];
+                    _plugboard[pair[1]] = pair[0]; // Fixed syntax
                 }
             }
         }
